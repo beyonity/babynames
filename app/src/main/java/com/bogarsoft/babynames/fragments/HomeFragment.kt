@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import com.bogarsoft.babynames.R
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +39,21 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
+        val alphabets = ('A'..'Z').toList()
+
+        val linearLayout = findViewById<LinearLayout>(R.id.filter_eng)
+
+        val chipGroup = ChipGroup(this)
+        linearLayout.addView(chipGroup)
+
+        for (alphabet in alphabets) {
+            val chip = Chip(this)
+            chip.id = View.generateViewId()
+            chip.text = alphabet.toString()
+            chip.isCheckable = true
+            chipGroup.addView(chip)
+        }
+
     }
 
     companion object {

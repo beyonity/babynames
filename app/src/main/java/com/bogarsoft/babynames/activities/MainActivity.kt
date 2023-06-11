@@ -8,15 +8,19 @@ import com.bogarsoft.babynames.databinding.ActivityMainBinding
 import com.bogarsoft.babynames.fragments.HomeFragment
 import com.bogarsoft.babynames.fragments.PageOneFragment
 import com.bogarsoft.babynames.fragments.PageTwoFragment
+import com.google.android.gms.ads.MobileAds
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
+
+@AndroidEntryPoint
+class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var pageAdapter: PageAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        MobileAds.initialize(this) {}
         init()
     }
     private fun init(){

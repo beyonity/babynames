@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">babynames</string>
+    <string name="app_name">Baby Names</string>
+    <string name="admob_id">ca-app-pub-8669188519734324~4231570963</string>
+    <string name="default_notification_channel_id" translatable="false">500</string>
+    <string name="admob_names_ad_unit">ca-app-pub-8669188519734324/5724616034</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
@@ -7,4 +10,6 @@
     <string name="profile">Profile</string>
     <string name="page1">Page1</string>
     <string name="page2">Page2</string>
+    <string name="meaning">Meaning: %1$s</string>
+    <string name="meaningtv">Meaning :</string>
 </resources>

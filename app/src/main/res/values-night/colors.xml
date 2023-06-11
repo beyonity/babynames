@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="svg_color">#fff</color>
+
+    <color name="colorBackground">#000</color>
+
+    <color name="textColorPrimary">#dfff</color>
+    <color name="textColorSecondary">#8fff</color>
+
+
+
+    <color name="colorPrimary">#0f6db8</color>
+
+
+    <color name="contentBg">#232323</color>
+
+    <color name="transparentColor">#0fff</color>
+
+    <color name="colorDivider">#1fffffff</color> <!-- 12% black -->
+
+
+    <color name="dialogBg">#1e1e1e</color>
+
+    <color name="gnt_ad_green">#3A6728</color>
+    <!--table color-->
+</resources>

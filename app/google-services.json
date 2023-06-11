@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "724842846216",
+    "project_id": "baby-names-2523a",
+    "storage_bucket": "baby-names-2523a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724842846216:android:6500cb78c742d56c3319bd",
+        "android_client_info": {
+          "package_name": "com.bogarsoft.babynames"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724842846216-sj1s3dmjm02fu09af3274f8rniq415u9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bogarsoft.babynames",
+            "certificate_hash": "eddede86e7e1c50e52af002475f8063349361ab0"
+          }
+        },
+        {
+          "client_id": "724842846216-693u1mb8rb347ja586e3ncg8csjpcp4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsXLHew5IGnJqQ8HsT-moncNtaEuviflE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724842846216-693u1mb8rb347ja586e3ncg8csjpcp4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

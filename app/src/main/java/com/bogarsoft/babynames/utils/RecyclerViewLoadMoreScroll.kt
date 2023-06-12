@@ -71,6 +71,7 @@ class RecyclerViewLoadMoreScroll : RecyclerView.OnScrollListener {
 
     override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
+        Log.d(TAG, "onScrollStateChanged: $currentVisibleItem")
         if (newState == RecyclerView.SCROLL_STATE_IDLE){
             Log.d(TAG, "onScrollStateChanged: its idle now")
             if (verticleScroll <= 0) return

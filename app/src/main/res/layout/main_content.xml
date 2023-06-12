@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contentBg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/topbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/topbarmenu" />
+    <RelativeLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/filterLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:paddingHorizontal="@dimen/high"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/highest"
+                android:id="@+id/alphabet"
+                android:textAlignment="textStart"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="A"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/body1_regular" />
+
+            <ImageView
+                android:src="@drawable/baseline_arrow_drop_down_24"
+                app:tint="@color/textColorPrimary"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/alphabet"
+                android:id="@+id/alphabetarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:singleSelection="false"
+            android:id="@+id/gendergroup"
+            app:selectionRequired="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.google.android.material.chip.Chip
+                android:id="@+id/boy"
+                android:text="@string/boy"
+                android:checkable="true"
+                android:checked="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/girl"
+                android:text="@string/girl"
+                android:checkable="true"
+                android:checked="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/unisex"
+                android:text="@string/unisex"
+                android:checkable="true"
+                android:checked="false"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+            <com.skydoves.androidveil.VeilRecyclerFrameView
+                android:id="@+id/veilRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterLayout"
+                app:veilFrame_baseColor="@color/shimmerBase0"
+                app:veilFrame_highlightColor="@color/shimmerHighlight1"
+                app:veilFrame_layout="@layout/name_list"
+                app:veilFrame_radius="4dp"
+                app:veilFrame_shimmerEnable="true"
+                app:veilFrame_veiled="true" />
+
+
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/totop"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:insetLeft="0dp"
+        android:visibility="gone"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        app:icon="@drawable/up_arrow"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="24dp"
+        android:backgroundTint="@color/black_20"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/high"
+        app:rippleColor="@color/colorDivider"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+        app:strokeWidth="0dp" />
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/noDataLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:padding="@dimen/highest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:lottie_rawRes="@raw/baby"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="false" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/loginButton"
+            android:layout_gravity="center"
+            android:text="@string/no_baby_names_found"
+            android:layout_marginTop="@dimen/medium"
+            android:textColor="@color/gnt_gray"
+            android:textStyle="bold"
+            android:backgroundTint="@color/blue_active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

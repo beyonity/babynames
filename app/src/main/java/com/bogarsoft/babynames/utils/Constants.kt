@@ -2,21 +2,24 @@ package com.bogarsoft.babynames.utils
 
 
 object Constants{
-    val DOMAIN: String = "https://tamillyrics.page.link"
-    val PRIVACY_URL = "https://tamillyrics.bogarsoft.com/android/privacy.html"
-    val TERMS_URL = "https://tamillyrics.bogarsoft.com/android/terms.html"
-    val TELEGRAM_URL = "https://t.me/tamilhits"
+    val PRIVACY_URL = "https://babynames.bogarsoft.com/android/privacy.html"
+    val TERMS_URL = "https://babynames.bogarsoft.com/android/terms.html"
+    val TELEGRAM_URL = "https://t.me/babynames"
     val OFFICIAL_EMAIL = "contactus@bogarsoft.com"
-    val DMCA_EMAIL = "lyrics@bogarsoft.com"
     const val THEME_MODE = "theme_mode"
     const val LIST_VIEW = 1
     const val AD_VIEW = 2
     const val LOADING_VIEW = 3
     const val NAME_VIEW_TYPE = "NAME VIEW"
-    const val SONG_VIEW_TYPE = "SONG VIEW"
-    const val LYRICS_VIEW_TYPE = "LYRICS VIEW"
     const val AD_VIEW_TYPE = "AD VIEW"
 
+
+    enum class SELECTED_TAB{
+        HOME,
+        RELIGION,
+        RASHI,
+        NAKSHATRA,
+    }
 
     enum class Language{
         TAMIL,ENGLISH
@@ -33,6 +36,10 @@ object Constants{
     const val COMMENT_TOP = "COMMENT_TOP"
 
 
+    const val ALPHABET_FILTER = "ALPHABET_FILTER"
+    const val GENDER_FILTER = "GENDER_FILTER"
+    const val SELECTED_MENU = "SELECTED_MENU"
+    const val SELECTED_ID = "SELECTED_TAB"
     const val SONG_SORT_NAME_ORDER = "SONG_SORT_NAME_ORDER"
     const val SONG_SORT_YEAR_ORDER = "SONG_SORT_YEAR_ORDER"
     const val SONG_FILTER_OPTION = "SONG_FILTER_OPTION"

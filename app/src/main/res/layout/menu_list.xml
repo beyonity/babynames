@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.google.android.material.card.MaterialCardView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/small"
+        android:layout_width="match_parent"
+        android:id="@+id/menucard"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/high"
+        app:strokeWidth="0dp"
+        android:backgroundTint="@color/contentBg"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <LinearLayout
+            android:paddingVertical="@dimen/medium"
+            android:paddingHorizontal="@dimen/small"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/icon"
+                android:src="@drawable/baseline_home_24"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+            <TextView
+                android:fontFamily="@font/ubuntu_bold"
+                android:textSize="@dimen/body2_regular"
+                android:textStyle="bold"
+                android:id="@+id/name"
+                android:text="@string/home"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/medium"
+                android:textColor="@color/textColorSecondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

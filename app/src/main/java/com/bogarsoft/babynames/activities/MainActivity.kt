@@ -1,13 +1,12 @@
 package com.bogarsoft.babynames.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bogarsoft.babynames.R
 import com.bogarsoft.babynames.adapters.PageAdapter
 import com.bogarsoft.babynames.databinding.ActivityMainBinding
 import com.bogarsoft.babynames.fragments.HomeFragment
-import com.bogarsoft.babynames.fragments.PageOneFragment
-import com.bogarsoft.babynames.fragments.PageTwoFragment
+import com.bogarsoft.babynames.fragments.RasiCalculatorFragment
+import com.bogarsoft.babynames.fragments.FavoriteFragment
 import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,8 +25,8 @@ class MainActivity : BaseActivity() {
     private fun init(){
         pageAdapter= PageAdapter(supportFragmentManager)
         pageAdapter.addFragment(HomeFragment(),"Home")
-        pageAdapter.addFragment(PageOneFragment(),"Page One")
-        pageAdapter.addFragment(PageTwoFragment(),"Page Two")
+        pageAdapter.addFragment(RasiCalculatorFragment(),"Page One")
+        pageAdapter.addFragment(FavoriteFragment(),"Page Two")
         binding.viewpager.offscreenPageLimit=5
         binding.viewpager.adapter=pageAdapter
         binding.viewpager.disableScroll(true)

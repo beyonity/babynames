@@ -112,4 +112,8 @@ dependencies {
 
     //admob
     implementation("com.google.android.gms:play-services-ads:22.1.0")
+
+
+    val lottieVersion = "6.0.0"
+    implementation("com.airbnb.android:lottie:$lottieVersion")
 }

@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -103,6 +108,34 @@ public class StorageUtil {
 	public int getUpdateCancelCount() {
 		preferences = context.getSharedPreferences(STORAGE, Context.MODE_PRIVATE);
 		return preferences.getInt("update_cancel_count", 0);
+	}
+
+
+	//store selected gender array
+	public void setGenderArray(ArrayList<String> genders){
+		preferences = context.getSharedPreferences(STORAGE, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = preferences.edit();
+		Gson gson = new Gson();
+		String json = gson.toJson(genders);
+		editor.putString(Constants.GENDER_FILTER, json);
+		editor.apply();
+	}
+
+	public ArrayList<String> getGenderArray(){
+		preferences = context.getSharedPreferences(STORAGE, Context.MODE_PRIVATE);
+		Gson gson = new Gson();
+		String json = preferences.getString(Constants.GENDER_FILTER, "");
+		if (json.isEmpty()) {
+			ArrayList<String> arrayList = new ArrayList<>();
+			arrayList.add("Boy");
+			arrayList.add("Girl");
+			arrayList.add("Unisex");
+			return arrayList;
+		} else {
+			Type type = new TypeToken<ArrayList<String>>() {
+			}.getType();
+			return gson.fromJson(json, type);
+		}
 	}
 
 

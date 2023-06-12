@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/very_high"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/title"
+        style="@style/TextAppearance.AppCompat.SearchResult.Title"
+        android:text="@string/select_alphabet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAlignment="center"
+        android:padding="@dimen/medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/highest"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

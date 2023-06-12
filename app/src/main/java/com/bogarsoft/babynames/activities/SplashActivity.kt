@@ -10,5 +10,6 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         startActivity(Intent(this,MainActivity::class.java))
+        finish()
     }
 }

@@ -12,4 +12,15 @@
     <string name="page2">Page2</string>
     <string name="meaning">Meaning: %1$s</string>
     <string name="meaningtv">Meaning :</string>
+    <string name="rasi_calculator">Rasi Calculator</string>
+    <string name="favorite">Favorite</string>
+    <string name="main">Main</string>
+    <string name="religions">Religions</string>
+    <string name="nakshatra">Nakshatra</string>
+    <string name="rashi">Rashi</string>
+    <string name="no_baby_names_found">No Baby Names Found</string>
+    <string name="boy">Boy</string>
+    <string name="girl">Girl</string>
+    <string name="unisex">Unisex</string>
+    <string name="select_alphabet">Select Alphabet</string>
 </resources>

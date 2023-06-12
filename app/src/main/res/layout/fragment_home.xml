@@ -1,55 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/contentBg"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:openDrawer="start"
     tools:context=".fragments.HomeFragment">
-
     <include
-        android:id="@+id/topbar"
-        layout="@layout/topbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.skydoves.androidveil.VeilRecyclerFrameView
-        android:id="@+id/veilRecyclerView"
+        android:id="@+id/maincontent"
+        layout="@layout/main_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomnav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topbar"
-        app:veilFrame_baseColor="@color/shimmerBase0"
-        app:veilFrame_highlightColor="@color/shimmerHighlight1"
-        app:veilFrame_layout="@layout/name_list"
-        app:veilFrame_radius="4dp"
-        app:veilFrame_shimmerEnable="true"
-        app:veilFrame_veiled="true" />
+        app:layout_constraintStart_toStartOf="parent" />
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/contentBg"
+        app:drawerLayoutCornerSize="0dp"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingHorizontal="@dimen/high"
+                android:paddingVertical="@dimen/very_high"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:background="?attr/colorPrimaryDark"
+                android:layout_height="wrap_content">
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/app_name"
+                    android:textColor="@color/white"
+                    style="@style/TextAppearance.AppCompat.SearchResult.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/totop"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:insetLeft="0dp"
-        android:visibility="gone"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        app:icon="@drawable/up_arrow"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconSize="24dp"
-        android:backgroundTint="@color/black_20"
-        app:iconTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/high"
-        app:rippleColor="@color/colorDivider"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
-        app:strokeWidth="0dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:cardCornerRadius="18dp"
+                    app:strokeWidth="0dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:backgroundTint="@color/white">
+                    <ImageView
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/logo" />
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:paddingHorizontal="@dimen/high"
+                android:paddingVertical="@dimen/very_high"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textSize="@dimen/body1_regular"
+                    android:textStyle="bold"
+                    android:text="@string/main"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_marginTop="@dimen/small"
+                    android:layout_width="match_parent"
+                    android:id="@+id/homecard"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/high"
+                    app:strokeWidth="0dp"
+                    android:backgroundTint="@color/contentBg">
+                    <LinearLayout
+                        android:paddingVertical="@dimen/medium"
+                        android:paddingHorizontal="@dimen/small"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:src="@drawable/house"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp" />
+                        <TextView
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:textSize="@dimen/body2_regular"
+                            android:textStyle="bold"
+                            android:text="@string/home"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/medium"
+                            android:textColor="@color/textColorSecondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </LinearLayout>
+
+            <View
+                android:background="@color/colorDivider_low"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:id="@+id/religions"
+            android:paddingHorizontal="@dimen/high"
+            android:paddingVertical="@dimen/very_high"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textSize="@dimen/body1_regular"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:text="@string/religions"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:cardCornerRadius="16dp"
+                    android:id="@+id/religioncard"
+                    app:strokeWidth="0dp"
+                    app:rippleColor="@color/colorDivider"
+                    android:backgroundTint="@color/transparent"
+                    android:layout_alignParentEnd="true">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:id="@+id/religionarrow"
+                        android:src="@drawable/baseline_arrow_drop_down_24"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" />
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:layout_marginTop="@dimen/small"
+                android:id="@+id/religionlist"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+            <View
+                android:background="@color/colorDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:id="@+id/rashis"
+                android:paddingHorizontal="@dimen/high"
+                android:paddingVertical="@dimen/very_high"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:textSize="@dimen/body1_regular"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:text="@string/rashi"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:cardCornerRadius="16dp"
+                        android:id="@+id/rashicard"
+                        app:strokeWidth="0dp"
+                        app:rippleColor="@color/colorDivider"
+                        android:backgroundTint="@color/transparent"
+                        android:layout_alignParentEnd="true">
+                        <ImageView
+                            android:id="@+id/rashiarrow"
+                            android:layout_gravity="center"
+                            android:src="@drawable/baseline_arrow_drop_down_24"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp" />
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="@dimen/small"
+                    android:id="@+id/rashilist"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <View
+                android:background="@color/colorDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:id="@+id/nakshatras"
+                android:paddingHorizontal="@dimen/high"
+                android:paddingVertical="@dimen/very_high"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:textSize="@dimen/body1_regular"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:text="@string/nakshatra"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:cardCornerRadius="16dp"
+                        android:id="@+id/nakshatracard"
+                        app:strokeWidth="0dp"
+                        app:rippleColor="@color/colorDivider"
+                        android:backgroundTint="@color/transparent"
+                        android:layout_alignParentEnd="true">
+                        <ImageView
+                            android:id="@+id/nakshatraarrow"
+                            android:layout_gravity="center"
+                            android:src="@drawable/baseline_arrow_drop_down_24"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp" />
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="@dimen/small"
+                    android:id="@+id/nakshatralist"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <View
+                android:background="@color/colorDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

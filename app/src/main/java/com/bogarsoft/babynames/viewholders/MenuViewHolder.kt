@@ -15,7 +15,8 @@ import com.bogarsoft.babynames.models.local.MenuItem
 class MenuViewHolder(val view: View) : RecyclerView.ViewHolder(view){
    private var binding:MenuListBinding = MenuListBinding.bind(view)
     fun bind(item:MenuItem,imageLoader:ImageLoader,onClickListener: OnClickListener){
-        binding.name.text = item.title
+        val title = "${item.title} ${if(item.letters.isNotEmpty()) "(${item.letters})" else ""}"
+        binding.name.text = title
         binding.icon.load(item.icon){
             crossfade(true)
             crossfade(100)

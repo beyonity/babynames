@@ -1,6 +1,7 @@
 package com.bogarsoft.babynames.network
 
 
+import com.bogarsoft.babynames.models.responses.AppUpdateResponse
 import com.bogarsoft.babynames.models.responses.BabyNameResponse
 import com.bogarsoft.babynames.models.responses.NakshatraResponse
 import com.bogarsoft.babynames.models.responses.RashiResponse
@@ -28,5 +29,11 @@ interface ApiService {
 
     @GET(API.GET_NAKSHATRAM)
     suspend fun getNakshatram(): Response<NakshatraResponse>
+
+    @GET(API.GET_BABYNAMES_BY_IDS)
+    suspend fun getBabyNamesByIds(@Query("ids") ids:ArrayList<Int>): Response<BabyNameResponse>
+
+    @GET(API.GET_APP_UPDATE)
+    suspend fun getAppUpdate(): Response<AppUpdateResponse>
 
 }

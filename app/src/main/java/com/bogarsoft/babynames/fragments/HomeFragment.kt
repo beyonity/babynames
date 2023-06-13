@@ -1,6 +1,7 @@
 package com.bogarsoft.babynames.fragments
 
 import android.app.Dialog
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.Handler
@@ -22,14 +23,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bogarsoft.babynames.App
 import com.bogarsoft.babynames.BuildConfig
 import com.bogarsoft.babynames.R
+import com.bogarsoft.babynames.activities.AboutActivity
 import com.bogarsoft.babynames.adapters.BabyNameAdapter
 import com.bogarsoft.babynames.adapters.MenuAdapter
 import com.bogarsoft.babynames.databinding.AlphabetListBinding
 import com.bogarsoft.babynames.databinding.AlphabetalertdialogBinding
 import com.bogarsoft.babynames.databinding.FragmentHomeBinding
+import com.bogarsoft.babynames.dialogs.BabyNameInfoDialog
 import com.bogarsoft.babynames.models.local.Feed
 import com.bogarsoft.babynames.utils.RecyclerViewLoadMoreScroll
 import com.bogarsoft.babynames.interfaces.OnLoadMoreListener
+import com.bogarsoft.babynames.models.global.BabyName
 import com.bogarsoft.babynames.models.local.MenuItem
 import com.bogarsoft.babynames.utils.Constants
 import com.bogarsoft.babynames.utils.Helper
@@ -75,6 +79,7 @@ class HomeFragment : Fragment() {
     private var isLoadingAdded = false
     private var currentListSize = 0
     private var SELECTED_MENU = Constants.SELECTED_TAB.HOME
+    private var PREVIOUS_MENU = Constants.SELECTED_TAB.HOME
     private var SELECTED_ID = 0
     private var SELECTED_ALPHABET = "A"
     private val SELECTED_GENDERS = ArrayList<String>()
@@ -151,8 +156,11 @@ class HomeFragment : Fragment() {
                 Log.d(TAG, "onScroll: $lastItem")
                 if (lastItem > 25){
                     binding.maincontent.totop.show()
+                    viewModel.hideBottomNav()
                 }else {
                     binding.maincontent.totop.hide()
+
+                    viewModel.showBottomNav()
                 }
             }
         })
@@ -210,36 +218,55 @@ class HomeFragment : Fragment() {
             it.forEach { religion ->
                 Log.d(TAG, "onCreateView: ${Helper.getImage(religion.image)}")
                 religionList.add(MenuItem(religion.id, Helper.getImage(religion.image),religion.name))
+                if(religion.id == SELECTED_ID && SELECTED_MENU == Constants.SELECTED_TAB.RELIGION){
+                    setSubtitle(religion.name)
+                }
             }
             religionAdapter.notifyDataSetChanged()
+
+            setSelectedContent()
         })
 
         viewModel.rashis.observe(viewLifecycleOwner,{
             rashiList.clear()
             it.forEach { rashi ->
-                Log.d(TAG, "onCreateView: ${Helper.getImage(rashi.image)}")
-                rashiList.add(MenuItem(rashi.id, Helper.getImage(rashi.image),rashi.name))
+                Log.d(TAG, "onCreateView: ${rashi.letters}")
+                rashiList.add(MenuItem(rashi.id, Helper.getImage(rashi.image),rashi.name,rashi.letters))
+                if(rashi.id == SELECTED_ID && SELECTED_MENU == Constants.SELECTED_TAB.RASHI){
+                    setSubtitle("${rashi.name} (${rashi.letters})")
+                }
             }
             rashiAdapter.notifyDataSetChanged()
+
+            setSelectedContent()
         })
-
-
         viewModel.nakshatras.observe(viewLifecycleOwner,{
             nakshatraList.clear()
             it.forEach { nakshatra ->
                 Log.d(TAG, "onCreateView: ${Helper.getImage(nakshatra.image)}")
-                nakshatraList.add(MenuItem(nakshatra.id, Helper.getImage(nakshatra.image),nakshatra.name))
+                nakshatraList.add(MenuItem(nakshatra.id, Helper.getImage(nakshatra.image),nakshatra.name,nakshatra.letters))
+                if(nakshatra.id == SELECTED_ID && SELECTED_MENU == Constants.SELECTED_TAB.NAKSHATRA){
+                    setSubtitle("${nakshatra.name} (${nakshatra.letters})")
+                }
             }
             nakshatraAdapter.notifyDataSetChanged()
+            setSelectedContent()
         })
-
         binding.homecard.setOnClickListener {
             SELECTED_ID = 0
+            PREVIOUS_MENU = SELECTED_MENU
             SELECTED_MENU = Constants.SELECTED_TAB.HOME
             App.prefs.push(Constants.SELECTED_MENU,SELECTED_MENU)
             App.prefs.push(Constants.SELECTED_ID,SELECTED_ID)
+            if(PREVIOUS_MENU == Constants.SELECTED_TAB.RASHI || PREVIOUS_MENU == Constants.SELECTED_TAB.NAKSHATRA){
+                setAlphabet("A")
+            }
             setSelectedContent()
             freshLoadingData()
+        }
+
+        binding.aboutcard.setOnClickListener {
+            startActivity(Intent(requireContext(), AboutActivity::class.java))
         }
 
         binding.religioncard.setOnClickListener {
@@ -304,10 +331,15 @@ class HomeFragment : Fragment() {
 
         religionAdapter.setOnItemClickListener(object : MenuAdapter.OnItemClickListener{
             override fun onItemClick(position: Int, item: MenuItem) {
+                PREVIOUS_MENU = SELECTED_MENU
                 SELECTED_MENU = Constants.SELECTED_TAB.RELIGION
                 SELECTED_ID = item.id
                 App.prefs.push(Constants.SELECTED_MENU,SELECTED_MENU)
                 App.prefs.push(Constants.SELECTED_ID,SELECTED_ID)
+                setSubtitle(item.title)
+                if(PREVIOUS_MENU == Constants.SELECTED_TAB.RASHI || PREVIOUS_MENU == Constants.SELECTED_TAB.NAKSHATRA){
+                    setAlphabet("A")
+                }
                 setSelectedContent()
                 freshLoadingData()
             }
@@ -316,10 +348,14 @@ class HomeFragment : Fragment() {
 
         rashiAdapter.setOnItemClickListener(object : MenuAdapter.OnItemClickListener{
             override fun onItemClick(position: Int, item: MenuItem) {
+                PREVIOUS_MENU = SELECTED_MENU
                 SELECTED_MENU = Constants.SELECTED_TAB.RASHI
                 SELECTED_ID = item.id
                 App.prefs.push(Constants.SELECTED_MENU,SELECTED_MENU)
                 App.prefs.push(Constants.SELECTED_ID,SELECTED_ID)
+                setSubtitle("${item.title} (${item.letters})")
+                setAlphabet(item.letters.split(",")[0])
+
                 setSelectedContent()
                 freshLoadingData()
             }
@@ -328,10 +364,14 @@ class HomeFragment : Fragment() {
 
         nakshatraAdapter.setOnItemClickListener(object : MenuAdapter.OnItemClickListener{
             override fun onItemClick(position: Int, item: MenuItem) {
+                PREVIOUS_MENU = SELECTED_MENU
                 SELECTED_MENU = Constants.SELECTED_TAB.NAKSHATRA
                 SELECTED_ID = item.id
                 App.prefs.push(Constants.SELECTED_MENU,SELECTED_MENU)
                 App.prefs.push(Constants.SELECTED_ID,SELECTED_ID)
+                setSubtitle("${item.title} (${item.letters})")
+                setAlphabet(item.letters.split(",")[0])
+                binding.maincontent.alphabet.text = SELECTED_ALPHABET
                 setSelectedContent()
                 freshLoadingData()
             }
@@ -373,11 +413,31 @@ class HomeFragment : Fragment() {
             }
         }
 
+        adapter.setonItemClickListener(object : BabyNameAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int, babyName: BabyName) {
+                val dialog = BabyNameInfoDialog(babyName)
+                dialog.show(childFragmentManager,"babynameinfo")
+                /*dialog.setOnRemoveFavListener(object : BabyNameInfoDialog.OnRemoveFavListener{
+                    override fun onRemoveFav() {
+                        dialog.dismiss()
+                    }
+                })*/
+            }
+
+        })
+
+        binding.maincontent.totop.setOnClickListener {
+            if(list.size > 0){
+                binding.maincontent.veilRecyclerView.getRecyclerView().scrollToPosition(0)
+                binding.maincontent.totop.hide()
+                viewModel.showBottomNav()
+            }
+        }
+
         viewModel.getreligionbydata()
         viewModel.getRashi()
         viewModel.getNakshatram()
         lazyLoadNames()
-        setSelectedContent()
         return binding.root
     }
 
@@ -395,7 +455,13 @@ class HomeFragment : Fragment() {
                     try {
                         val adLoader = builder.forNativeAd { nativead ->
 
-                            list.add(index,Feed(Constants.AD_VIEW_TYPE,nativead))
+                            try{
+                                list.add(index,Feed(Constants.AD_VIEW_TYPE,nativead))
+                            }catch (e:Exception) {
+                                e.printStackTrace()
+                            }
+
+
 
 
                         }.withAdListener(object : AdListener() {
@@ -429,7 +495,11 @@ class HomeFragment : Fragment() {
                     )
                     try {
                         val adLoader = builder.forNativeAd { nativead ->
-                            list.add(index,Feed(Constants.AD_VIEW_TYPE,nativead))
+                            try{
+                                list.add(index,Feed(Constants.AD_VIEW_TYPE,nativead))
+                            }catch (e:Exception) {
+                                e.printStackTrace()
+                            }
                         }.withAdListener(object : AdListener() {
                             override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                                 super.onAdFailedToLoad(loadAdError)
@@ -463,7 +533,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setSelectedContent(){
-
+        Log.d(TAG, "setSelectedContent: $SELECTED_MENU")
         when(SELECTED_MENU){
             Constants.SELECTED_TAB.HOME ->{
                 binding.homecard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.selection_color))
@@ -479,7 +549,7 @@ class HomeFragment : Fragment() {
                 religionAdapter.notifyDataSetChanged()
                 rashiAdapter.notifyDataSetChanged()
                 nakshatraAdapter.notifyDataSetChanged()
-
+                binding.maincontent.topbar.subtitle.text = "Home"
 
 
 
@@ -506,6 +576,7 @@ class HomeFragment : Fragment() {
 
             }
             Constants.SELECTED_TAB.RASHI -> {
+                Log.d(TAG, "setSelectedContent: ${SELECTED_ID} ${rashiList.size}")
                 binding.homecard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.transparent))
                 binding.religionlist.visibility = View.GONE
                 binding.religionarrow.setImageResource(R.drawable.baseline_arrow_drop_up_24)
@@ -525,10 +596,11 @@ class HomeFragment : Fragment() {
                     rashiAdapter.notifyDataSetChanged()
                 }
 
+
+
             }
             Constants.SELECTED_TAB.NAKSHATRA -> {
                 binding.homecard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.transparent))
-
                 binding.religionlist.visibility = View.GONE
                 binding.religionarrow.setImageResource(R.drawable.baseline_arrow_drop_up_24)
                 binding.nakshatralist.visibility = View.GONE
@@ -544,6 +616,7 @@ class HomeFragment : Fragment() {
 
                 nakshatraList.find { it.id == SELECTED_ID }?.let {
                     it.isSelected = true
+
                     nakshatraAdapter.notifyDataSetChanged()
                 }
 
@@ -585,8 +658,24 @@ class HomeFragment : Fragment() {
         dialog.setCancelable(true)
         val view = AlphabetalertdialogBinding.inflate(LayoutInflater.from(requireContext()))
         dialog.setContentView(view.root)
-        val array = arrayListOf<String>("A","B","C","D","E","F","G","H","I","J","K","L","M","N",
-            "O","P","Q","R","S","T","U","V","W","X","Y","Z")
+        val array = ArrayList<String>()
+        if(SELECTED_MENU == Constants.SELECTED_TAB.RELIGION || SELECTED_MENU == Constants.SELECTED_TAB.HOME) {
+            val alpha = arrayListOf<String>("A","B","C","D","E","F","G","H","I","J","K","L","M","N",
+                "O","P","Q","R","S","T","U","V","W","X","Y","Z")
+            array.addAll(alpha)
+        }else {
+            if (SELECTED_MENU == Constants.SELECTED_TAB.RASHI) {
+                rashiList.find { it.id == SELECTED_ID }?.let {
+                    array.addAll(it.letters.split(","))
+                }
+
+            } else {
+                nakshatraList.find { it.id == SELECTED_ID }?.let {
+                    array.addAll(it.letters.split(","))
+                }
+            }
+        }
+
         array.forEach {
             val chip = Chip(requireContext())
             chip.text = it
@@ -595,9 +684,7 @@ class HomeFragment : Fragment() {
             chip.isChecked = SELECTED_ALPHABET == it
             chip.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked){
-                    SELECTED_ALPHABET = it
-                    App.prefs.push(Constants.ALPHABET_FILTER,it)
-                    binding.maincontent.alphabet.setText(it)
+                    setAlphabet(it)
                     freshLoadingData()
                     dialog.dismiss()
                 }
@@ -608,6 +695,18 @@ class HomeFragment : Fragment() {
 
         dialog.show()
     }
+
+
+    private fun setSubtitle(subtitle:String){
+        binding.maincontent.topbar.subtitle.text = subtitle
+    }
+
+    private fun setAlphabet(al:String){
+        SELECTED_ALPHABET = al.trim()
+        binding.maincontent.alphabet.text = SELECTED_ALPHABET
+        App.prefs.push(Constants.ALPHABET_FILTER,al)
+    }
+
 
 
     companion object {

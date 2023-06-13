@@ -4,7 +4,7 @@
     app:cardCornerRadius="@dimen/very_high"
     app:strokeWidth="0dp"
     android:layout_marginHorizontal="@dimen/high"
-    android:layout_marginVertical="@dimen/medium"
+    android:layout_marginVertical="@dimen/small"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,7 +12,6 @@
         android:paddingHorizontal="@dimen/medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <ImageView
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

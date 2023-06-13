@@ -3,6 +3,16 @@
     <string name="admob_id">ca-app-pub-8669188519734324~4231570963</string>
     <string name="default_notification_channel_id" translatable="false">500</string>
     <string name="admob_names_ad_unit">ca-app-pub-8669188519734324/5724616034</string>
+    <string name="admob_above_bottomnav_ad_unit">ca-app-pub-8669188519734324/1468417078</string>
+    <string name="admob_fav_ad_unit">ca-app-pub-8669188519734324/9176350858</string>
+    <string name="made_with_by_bogarsoft_in_chennai">Made with ❤️ By Bogarsoft, From Chennai</string>
+    <string name="icon_credits">Icon Credits</string>
+    <string name="official_telegram_channel">Official Telegram Group</string>
+    <string name="social_media">Social Media</string>
+    <string name="https_t_me_tamilhits">https://t.me/tamilhits</string>
+    <string name="read_our_privacy_policy">Read our privacy policy</string>
+    <string name="for_freelancing_software_development">For Software Development</string>
+    <string name="contact_us">Contact Us</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
@@ -23,4 +33,14 @@
     <string name="girl">Girl</string>
     <string name="unisex">Unisex</string>
     <string name="select_alphabet">Select Alphabet</string>
+    <string name="will_be_updated_soon">Will be updated soon</string>
+    <string name="app_description">The Baby Names Android app is a comprehensive tool featuring a vast collection of authentic Indian names with meanings and origins. With an intuitive interface, personalized lists, and regular updates, it helps parents find the perfect name for their newborns, catering to both traditional and modern preferences.</string>
+
+    <string name="privacy"><p>By signing up/logging in, you agree to our <a href="https://tamillyrics.bogarsoft.com/android/privacy.html">Privacy Policy</a> and <a href="https://tamillyrics.bogarsoft.com/android/terms.html">Terms &amp; Conditions</a></p></string>
+
+    <string name="about">About Us</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_amp_conditions"><![CDATA[Terms & Conditions]]></string>
+
+    <string name="read_our_terms_and_conditions">Read our terms and conditions</string>
 </resources>

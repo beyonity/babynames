@@ -14,17 +14,20 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
 import com.bogarsoft.babynames.R
+import com.bogarsoft.babynames.databinding.FavNameListBinding
 import com.bogarsoft.babynames.databinding.ListAdLayoutBinding
 import com.bogarsoft.babynames.databinding.NameListBinding
 import com.bogarsoft.babynames.models.global.BabyName
 import com.bogarsoft.babynames.models.local.Feed
 import com.bogarsoft.babynames.utils.Constants
+import com.bogarsoft.babynames.utils.hide
 import com.bogarsoft.babynames.utils.invisible
+import com.bogarsoft.babynames.utils.show
 import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 
-class BabyNameAdapter(val list:ArrayList<Feed?>, val activity:AppCompatActivity):RecyclerView.Adapter<ViewHolder>() {
+class FavoriteBabyNameAdapter(val list:ArrayList<Feed?>, val activity:AppCompatActivity):RecyclerView.Adapter<ViewHolder>() {
 
     private lateinit var onItemClickListener: OnItemClickListener
     fun setonItemClickListener(onItemClickListener: OnItemClickListener){
@@ -41,7 +44,7 @@ class BabyNameAdapter(val list:ArrayList<Feed?>, val activity:AppCompatActivity)
     class AdViewHolder(view: View) : RecyclerView.ViewHolder(view)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == Constants.LIST_VIEW){
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.name_list,parent,false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.fav_name_list,parent,false)
             ViewHolder(view)
         }else if (viewType == Constants.AD_VIEW){
             val view = LayoutInflater.from(parent.context).inflate(R.layout.list_ad_layout,parent,false)
@@ -61,18 +64,42 @@ class BabyNameAdapter(val list:ArrayList<Feed?>, val activity:AppCompatActivity)
 
         if (holder.itemViewType == Constants.LIST_VIEW) {
             val baby = list.get(position)?.data as BabyName
-            val binding = NameListBinding.bind(holder.itemView)
+            val binding = FavNameListBinding.bind(holder.itemView)
             binding.name.text = baby.english
             binding.subtitle.text = baby.meaning.split(";").joinToString(",")
             binding.name.isSelected = true
             binding.subtitle.isSelected = true
             if(baby.gender.equals("Boy")){
-                binding.imageView.load(R.drawable.babyboy)
+                binding.imageView.load(R.drawable.boy)
             }else if(baby.gender.equals("Girl")){
-                binding.imageView.load(R.drawable.babygirl)
+                binding.imageView.load(R.drawable.girl)
             }else {
-                binding.imageView.load(R.drawable.baby)
+                binding.imageView.load(R.drawable.unisex)
             }
+            binding.religion.text = baby.religion.name
+
+            baby.rashi?.let {
+                binding.rashi.text = "${it.name} (${it.letters})"
+                binding.rashilayout.show()
+            }?:run{
+               binding.rashilayout.hide()
+            }
+
+            baby.naksathra?.let {
+                binding.nakshatra.text = "${it.name} (${it.letters})"
+                binding.nakshatralayout.show()
+            }?:run{
+                binding.nakshatralayout.hide()
+            }
+
+            if(binding.nakshatralayout.visibility == View.GONE && binding.rashilayout.visibility == View.GONE) {
+                binding.horoscopelayout.visibility = View.GONE
+
+            }else {
+                binding.horoscopelayout.visibility = View.VISIBLE
+            }
+
+
 
             binding.more.setOnClickListener {
                 if(::onItemClickListener.isInitialized){

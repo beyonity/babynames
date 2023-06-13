@@ -1,6 +1,9 @@
 package com.bogarsoft.babynames.di
 
+import android.app.Application
+import androidx.room.Room
 import com.bogarsoft.babynames.BuildConfig
+import com.bogarsoft.babynames.database.AppDatabase
 import com.bogarsoft.babynames.network.ApiService
 import com.bogarsoft.babynames.repositories.MainRepository
 import dagger.Module
@@ -20,6 +23,16 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(app: Application): AppDatabase {
+        return Room.databaseBuilder(
+            app,
+            AppDatabase::class.java,
+            AppDatabase.DATA_BASE_NAME
+        ).fallbackToDestructiveMigration().build()
+    }
 
     @Provides
     @Singleton
@@ -72,7 +85,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMainRepository(apiService:ApiService): MainRepository {
-        return MainRepository(apiService)
+    fun provideMainRepository(db:AppDatabase,apiService:ApiService): MainRepository {
+        return MainRepository(db.favoriteNameDao(),apiService)
     }
 }

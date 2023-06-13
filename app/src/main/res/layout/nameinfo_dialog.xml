@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/medium"
+    android:layout_width="match_parent"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:layout_height="wrap_content">
+    <include
+        layout="@layout/dialog_bg_ifen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:padding="@dimen/very_high"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+                <!--<com.google.android.material.card.MaterialCardView
+                    android:id="@+id/imagecard"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeWidth="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    android:backgroundTint="@color/transparent"
+                    android:layout_margin="@dimen/medium"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp">
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+                </com.google.android.material.card.MaterialCardView>-->
+
+
+                <com.google.android.material.card.MaterialCardView
+                    app:strokeWidth="0dp"
+                    app:cardElevation="0dp"
+                    android:id="@+id/song_details"
+                    android:backgroundTint="@color/transparent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/favoritecard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:textSize="@dimen/h6_medium"
+                            android:ellipsize="marquee"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+                            android:textColor="@color/textColorPrimary"
+                            android:text=""/>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="0dp"
+                    app:cardPreventCornerOverlap="false"
+                    android:id="@+id/favoritecard"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeWidth="0dp"
+                    android:backgroundTint="@color/transparent">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/favorite"
+                        android:id="@+id/favorite"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="centerCrop" />
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_marginVertical="@dimen/high"
+                android:background="@color/colorDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+            <LinearLayout
+                android:id="@+id/songinfolayout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Meaning"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textSize="@dimen/h6_medium"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/gnt_blue"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/meaning"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:layout_marginTop="@dimen/medium"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_marginVertical="@dimen/high"
+                    android:background="@color/colorDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Gender"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:textSize="@dimen/h6_medium"
+                            android:textColor="@color/gnt_blue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Boy"
+                            android:id="@+id/gender"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:layout_marginTop="@dimen/small"
+                            android:textSize="@dimen/body1_regular"
+                            android:textColor="@color/textColorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Religion"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:textSize="@dimen/h6_medium"
+                            android:textColor="@color/gnt_blue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Hindu"
+                            android:id="@+id/religion"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:layout_marginTop="@dimen/small"
+                            android:textSize="@dimen/body1_regular"
+                            android:textColor="@color/textColorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Numerology"
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:textSize="@dimen/h6_medium"
+                            android:textColor="@color/gnt_blue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="6"
+
+                            android:fontFamily="@font/ubuntu_bold"
+                            android:id="@+id/numerology"
+                            android:layout_marginTop="@dimen/small"
+                            android:textSize="@dimen/body1_regular"
+                            android:textColor="@color/textColorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                               <View
+                    android:layout_marginVertical="@dimen/high"
+                    android:background="@color/colorDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/horoscopelayout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/rashilayout"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Rashi"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:textSize="@dimen/h6_medium"
+                        android:layout_width="match_parent"
+                        android:textColor="@color/gnt_blue"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/rashi"
+                        android:layout_marginTop="@dimen/medium"
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/high"
+                    android:id="@+id/nakshatralayout"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Nakshatra"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:textSize="@dimen/h6_medium"
+                        android:layout_width="match_parent"
+                        android:textColor="@color/gnt_blue"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/nakshatra"
+                        android:fontFamily="@font/ubuntu_bold"
+                        android:layout_marginTop="@dimen/medium"
+                        android:layout_width="match_parent"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_marginVertical="@dimen/high"
+                    android:background="@color/colorDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

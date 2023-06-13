@@ -3,11 +3,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.FavoriteFragment">
     <include
         android:id="@+id/topbar"
         layout="@layout/topbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <com.skydoves.androidveil.VeilRecyclerFrameView
+        android:id="@+id/veilRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topbar"
+        app:veilFrame_baseColor="@color/shimmerBase0"
+        app:veilFrame_highlightColor="@color/shimmerHighlight1"
+        app:veilFrame_layout="@layout/name_list"
+        app:veilFrame_radius="4dp"
+        app:veilFrame_shimmerEnable="true"
+        app:veilFrame_veiled="true" />
+
+    <LinearLayout
+        android:id="@+id/noDataLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:padding="@dimen/highest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:lottie_rawRes="@raw/baby"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="false" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/loginButton"
+            android:layout_gravity="center"
+            android:text="@string/no_baby_names_found"
+            android:layout_marginTop="@dimen/medium"
+            android:textColor="@color/gnt_gray"
+            android:textStyle="bold"
+            android:backgroundTint="@color/blue_active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

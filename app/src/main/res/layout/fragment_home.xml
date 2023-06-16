@@ -20,7 +20,7 @@
         android:id="@+id/nav_view"
         android:layout_width="280dp"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/contentBg"
+        android:background="@color/colorBackground"
         app:drawerLayoutCornerSize="0dp"
         android:layout_gravity="start"
         android:fitsSystemWindows="true">
@@ -89,8 +89,7 @@
                     android:id="@+id/homecard"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="@dimen/high"
-                    app:strokeWidth="0dp"
-                    android:backgroundTint="@color/contentBg">
+                    app:strokeWidth="0dp">
                     <LinearLayout
                         android:paddingVertical="@dimen/medium"
                         android:paddingHorizontal="@dimen/small"
@@ -306,8 +305,7 @@
                     android:id="@+id/aboutcard"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="@dimen/high"
-                    app:strokeWidth="0dp"
-                    android:backgroundTint="@color/contentBg">
+                    app:strokeWidth="0dp">
                     <LinearLayout
                         android:paddingVertical="@dimen/medium"
                         android:paddingHorizontal="@dimen/small"

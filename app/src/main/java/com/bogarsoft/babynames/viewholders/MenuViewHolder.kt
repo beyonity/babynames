@@ -22,7 +22,7 @@ class MenuViewHolder(val view: View) : RecyclerView.ViewHolder(view){
             crossfade(100)
         }
 
-        val request = ImageRequest.Builder(view.context)
+        /*val request = ImageRequest.Builder(view.context)
             .data(item.icon)
             .target(binding.icon)
             .placeholder(R.drawable.logo)
@@ -31,7 +31,13 @@ class MenuViewHolder(val view: View) : RecyclerView.ViewHolder(view){
             .crossfade(500)
             .build()
 
-        imageLoader.enqueue(request)
+        imageLoader.enqueue(request)*/
+        binding.icon.load(item.icon){
+            crossfade(true)
+            crossfade(500)
+            placeholder(R.drawable.logo)
+            error(R.drawable.logo)
+        }
         binding.menucard.setOnClickListener {
             onClickListener.onClick()
         }

@@ -1,5 +1,6 @@
 package com.bogarsoft.babynames.utils
 
+import android.widget.EditText
 import com.bogarsoft.babynames.BuildConfig
 
 class Helper {
@@ -18,6 +19,18 @@ class Helper {
             val IMAGE_URL = BASE_URL.replace("api/v1/user/","images")
             return "$IMAGE_URL/$name"
 
+        }
+
+        //check for empty editext and show error
+        fun checkEmptyEditText(vararg editTexts:EditText):Boolean{
+            var isEmpty = false
+            for(editText in editTexts){
+                if(editText.text.toString().isEmpty()){
+                    editText.error = editText.hint.toString()
+                    isEmpty = true
+                }
+            }
+            return isEmpty
         }
     }
 }

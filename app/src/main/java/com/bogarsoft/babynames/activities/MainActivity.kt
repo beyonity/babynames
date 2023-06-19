@@ -195,7 +195,7 @@ class MainActivity : BaseActivity() {
     private fun init(){
         pageAdapter= PageAdapter(supportFragmentManager)
         pageAdapter.addFragment(HomeFragment(),"Home")
-        pageAdapter.addFragment(RasiCalculatorFragment(),"Page One")
+        //pageAdapter.addFragment(RasiCalculatorFragment(),"Page One")
         pageAdapter.addFragment(FavoriteFragment(),"Page Two")
         binding.viewpager.offscreenPageLimit=5
         binding.viewpager.adapter=pageAdapter
@@ -207,13 +207,13 @@ class MainActivity : BaseActivity() {
                     binding.viewpager.setCurrentItem(0,false)
                     true
                 }
-                R.id.pageone ->{
+                /*R.id.pageone ->{
                     binding.viewpager.setCurrentItem(1,false)
                     true
-                }
+                }*/
 
                 R.id.pagetwo -> {
-                    binding.viewpager.setCurrentItem(2, false)
+                    binding.viewpager.setCurrentItem(1, false)
                     true
                 }
 

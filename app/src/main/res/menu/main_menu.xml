@@ -4,10 +4,10 @@
         android:id="@+id/home"
         android:icon="@drawable/baseline_home_24"
         android:title="@string/home" />
-    <item
+    <!--<item
         android:id="@+id/pageone"
         android:icon="@drawable/baseline_calculate_24"
-        android:title="@string/rasi_calculator" />
+        android:title="@string/rasi_calculator" />-->
     <item
         android:id="@+id/pagetwo"
         android:icon="@drawable/favorite_filled"

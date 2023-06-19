@@ -2,6 +2,7 @@ package com.bogarsoft.babynames.fragments
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,8 +12,11 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.TimePicker
+import androidx.annotation.RequiresApi
 import com.bogarsoft.babynames.R
 import com.bogarsoft.babynames.databinding.FragmentRashiCalculatorBinding
+import com.bogarsoft.babynames.utils.Astrology
+import com.bogarsoft.babynames.utils.Helper
 import java.util.Calendar
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,29 +49,50 @@ class RasiCalculatorFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentRashiCalculatorBinding.inflate(inflater, container, false)
-        btnSelectDate = binding.btnSelectDate
-        btnSelectTime = binding.btnSelectTime
-        txtSelectedDate = binding.txtSelectedDate
-        txtSelectedTime = binding.txtSelectedTime
-        txtRashi = binding.txtRashi
-        txtNakshatra = binding.txtNakshatra
+        //btnSelectDate = binding.btnSelectDate
+        //btnSelectTime = binding.btnSelectTime
+        //txtSelectedDate = binding.txtSelectedDate
+        //txtSelectedTime = binding.txtSelectedTime
+        //txtRashi = binding.txtRashi
+        //txtNakshatra = binding.txtNakshatra
 
-        btnSelectDate.setOnClickListener {
+      /*  btnSelectDate.setOnClickListener {
             showDatePickerDialog()
         }
         btnSelectTime.setOnClickListener {
             showTimePickerDialog()
         }
+*/
 
-
-        binding.btnCalculate.setOnClickListener {
+        /*binding.btnCalculate.setOnClickListener {
             calculateRashiAndNakshatra()
+        }*/
+
+        binding.buttonCalculate.setOnClickListener {
+            if(Helper.checkEmptyEditText(binding.editTextDay,binding.editTextMonth,binding.editTextYear,binding.editTextHour,binding.editTextMinute)){
+                return@setOnClickListener
+            }else {
+                val day = binding.editTextDay.text.toString().toInt()
+                val month = binding.editTextMonth.text.toString().toInt()
+                val year = binding.editTextYear.text.toString().toInt()
+                val hour = binding.editTextHour.text.toString().toInt()
+                val minute = binding.editTextMinute.text.toString().toInt()
+
+                /*val rashi = getRashi(day, month)
+                val nakshatra = getNakshatra(day, month, year, hour, minute)
+
+                binding.textViewRashi.text = rashi
+                binding.textViewNakshatra.text = nakshatra*/
+                val ast = Astrology()
+                ast.calculate(day,month,year,hour,minute,0)
+            }
         }
         return binding.root
     }
@@ -167,6 +192,9 @@ class RasiCalculatorFragment : Fragment() {
     private fun isLeapYear(year: Int): Boolean {
         return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
     }
+
+
+
     companion object {
         /**
          * Use this factory method to create a new instance of
